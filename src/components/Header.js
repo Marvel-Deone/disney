@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { auth, provider } from "../Firebase";
+import { auth, provider } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {selectUserName,selectUserPhoto,setUserLoginDetails,setSignOutState,} from "../features/user/userSlice";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Header = (props) => {
             setUser(result.user);
         }).catch((error) => {
             alert(error.message);
+            history.push("/");
         });
         } else if (userName) {
             auth.signOut().then(() => {
@@ -52,30 +54,14 @@ const Header = (props) => {
                 <Login onClick={handleAuth}>Login</Login>
             ) : <>
             <NavMenu>
-                <a href="/home">
+                <Link to="/home">
                 <img src="/images/home-icon.svg" alt="HOME" />
                 <span>HOME</span>
-                </a>
-                <a href="/home">
-                <img src="/images/search-icon.svg" alt="SEARCH" />
-                <span>SEARCH</span>
-                </a>
-                <a href="/home">
-                <img src="/images/watchlist-icon.svg" alt="WATCHLIST" />
-                <span>WATCHLIST</span>
-                </a>
-                <a href="/home">
-                <img src="/images/original-icon.svg" alt="ORIGINALS" />
-                <span>ORIGINALS</span>
-                </a>
-                <a href="/home">
+                </Link>
+                <Link to="/movies">
                 <img src="/images/movie-icon.svg" alt="MOVIES" />
                 <span>MOVIES</span>
-                </a>
-                <a href="/home">
-                <img src="/images/series-icon.svg" alt="SERIES" />
-                <span>SERIES</span>
-                </a>
+                </Link>
           </NavMenu>
           <SignOut>
             <UserImg src={userPhoto} alt={userName} />

@@ -1,0 +1,34 @@
+#trailerView {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  overflow-x: hidden;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+#trailerView > img {
+  width: 30px;
+  height: 30px;
+  z-index: 1;
+  position: absolute;
+  top: 70px;
+  right: 100px;
+}
+
+iframe {
+  width: 560px;
+  height: 315px;
+}
+
+@media (max-width: 768px) {
+  iframe {
+    width: 90%;
+    height: 300px;
+  }
+}

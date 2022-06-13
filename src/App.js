@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Login from './components/Login'
 import Header from './components/Header'
 import Home from './components/Home';
+import Detail from './components/Detail';
+import Movies from './components/Movies';
 
 function App() {
   return (
@@ -16,6 +18,12 @@ function App() {
           </Route>
           <Route exact path='/home'>
             <Home/>
+          </Route>
+          <Route exact path='/movies'>
+            <Movies/>
+          </Route>
+          <Route exact path='/detail/:id'>
+            <Detail/>
           </Route>
         </Switch>
       </Router>
