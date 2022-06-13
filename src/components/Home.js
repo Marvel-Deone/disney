@@ -10,8 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import db from "../firebase";
 import { setMovies } from "../features/movie/movieSlice";
 import { selectUserName } from "../features/user/userSlice";
+import { useHistory } from "react-router-dom";
 
 const Home = (props) => {
+  const history = useHistory()
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
   let recommends = [];
@@ -20,6 +22,9 @@ const Home = (props) => {
   let trending = [];
 
   useEffect(() => {
+    if (!userName) {
+      history.push("/");
+    }
     db.collection("movies").onSnapshot((snapshot) => {
       snapshot.docs.map((doc) => {
         console.log(recommends);

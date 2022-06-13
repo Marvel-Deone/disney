@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { selectUserName } from "../features/user/userSlice";
 import db from "../firebase";
 
 const Detail = (props) => {
     const { id } = useParams();
   const [detailData, setDetailData] = useState({});
+  const userName = useSelector(selectUserName);
+  const history = useHistory()
 
   useEffect(() => {
+    if (!userName) {
+      history.push("/");
+    }
     db.collection("movies")
       .doc(id)
       .get()
@@ -21,7 +29,7 @@ const Detail = (props) => {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  }, [id]);
+  }, [id, userName]);
   const [toggle, setToggle] = useState(false)
   const trailer = () => {
       setToggle(true)
